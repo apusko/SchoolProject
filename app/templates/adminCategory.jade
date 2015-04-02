@@ -1,0 +1,27 @@
+doctype html
+html()
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Школа
+    link(href="{{url_for('static', filename = 'css/bootstrap.css') }}", rel='stylesheet')
+    link(href="{{ url_for('static', filename = 'css/style.css') }}", rel='stylesheet')
+    link(href="{{ url_for('static', filename = 'css/blog.css') }}", rel='stylesheet')
+    link(href='http://fonts.googleapis.com/css?family=Didact+Gothic&subset=cyrillic-ext,latin,cyrillic', rel='stylesheet', type='text/css')
+  body
+    .container
+        .row
+            p 
+                a(href="/admin") Список категорий
+            p Статьи категории - {{ category.name }}
+            p
+                a(href="/admin/new/{{ category.id }}") Добавить статью
+            
+            ul
+            {% for i in articles %}
+            li 
+                {{ i.name }} - 
+                a(href="/admin/edit/{{ category.id }}/{{ i.id }}") редактировать  
+                a(href="/admin/delete/{{ category.id }}/{{ i.id }}") удалить
+            {% endfor %}

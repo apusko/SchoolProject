@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+.container
+    .text-center 
+        h1{{ category.name }}
+        p {{ category.description }}
+
+    .row
+        {% if category.id == 1 %}
+
+        {%if error %}
+        p {{ error }}
+        {% endif %}
+
+        form(action="{{ url_for('login') }}", method="POST")
+            p Введите Имя:
+                input(type="text", placeholder="Username", name="username", value="{{ request.form.username }}")
+            p Введите пароль:
+                input(type="text", placeholder="Password", name="password", value="{{ request.form.password }}" )
+            input(type="submit", value="Send")
+        {% else %}
+        {% if category.id == 6 %}
+        p {{ children }}
+        {% endif %}
+        {% for i in articles%}
+        .col-md-6.service
+            h2 {{ i.name }}
+            p {{ i.text|truncate(255) }}
+            p
+                a.btn.btn-default(href='/category/{{ category.id }}/{{ i.id }}', role='button') Подробнее »
+        {% endfor %}
+        {% endif %}
+{% endblock content %}

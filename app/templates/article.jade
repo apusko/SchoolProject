@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+.container
+    .row.row-centered
+        .col-md-12
+            {% if category.id == 6 %}
+            .text-center 
+                h1{{ category.name }} ученика {{ cl.name }} класса {{ children.name }}
+                {% for z in sub_mark.keys() %}
+                p {{z}} - {{ sub_mark[z] }}
+                {% endfor %}
+            {% else %}
+            h2 {{ article.name }}
+            p 
+                a(href='/category/{{ category.id }}') {{ category.name }}
+            p {{ article.text }}
+            {% endif %}
+{% endblock %}

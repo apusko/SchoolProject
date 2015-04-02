@@ -1,0 +1,24 @@
+doctype html
+html()
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Школа
+    link(href="{{url_for('static', filename = 'css/bootstrap.css') }}", rel='stylesheet')
+    link(href="{{ url_for('static', filename = 'css/style.css') }}", rel='stylesheet')
+    link(href="{{ url_for('static', filename = 'css/blog.css') }}", rel='stylesheet')
+    link(href='http://fonts.googleapis.com/css?family=Didact+Gothic&subset=cyrillic-ext,latin,cyrillic', rel='stylesheet', type='text/css')
+  body
+    .container
+        .row
+            h3 Новая статья
+            form(action="{{ url_for('adminNewArticle', category_id = category.id) }}", method="POST")
+                p Name:
+                    input(type="text", size="80", name="name")
+                p Text:
+                textarea(rows="10", cols="100", name="text")
+                input(type="submit", value="Создать")
+                br
+                br
+                a(href="{{ url_for('adminCategory', category_id = category.id) }}") Отмена

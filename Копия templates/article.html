@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Школа</title>
+    <link href="{{url_for('static', filename = 'css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename = 'css/style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename = 'css/blog.css') }}" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Didact+Gothic&amp;subset=cyrillic-ext,latin,cyrillic" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand"></a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/">Главная</a></li>
+            <li><a href="/category/1">Эл.журнал</a></li>
+            <li><a href="/category/2">Новости</a></li>
+            <li class="dropdown"><a href="/category/3" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">Наша школа<span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+            <li><a href="/category/4">Прямая линия</a></li>
+            <li class="dropdown"><a href="/category/5" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">Уч.деятельность<span class="caret"></span></a>
+              <ul role="menu" class="dropdown-menu">
+                <li><a href="#">Action</a></li>
+                <li><a href="#">Another action</a></li>
+                <li><a href="#">Something else here</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Nav header</li>
+                <li><a href="#">Separated link</a></li>
+                <li><a href="#">One more separated link</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <header style="background-color: #0C0C0C;" class="intro-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="site-heading">
+              <div class="wrap-heading">
+                <h1>МБОУ СОШ №1</h1>
+                <hr class="small"><span class="subheading">г. Гвардейска</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row row-centered">
+        <div class="col-md-12">{% if category.id == 6 %}
+          <div class="text-center"> 
+            <h1>{{ category.name }} ученика {{ cl.name }} класса {{ children.name }}</h1>{% for z in sub_mark.keys() %}
+            <p>{{z}} - {{ sub_mark[z] }}</p>{% endfor %}
+          </div>{% else %}
+          <h2>{{ article.name }}</h2>
+          <p> <a href="/category/{{ category.id }}">{{ category.name }}</a></p>
+          <p>{{ article.text }}</p>{% endif %}
+        </div>
+      </div>
+    </div>
+    <footer class="blog-footer">
+      <p>© 2008-2015 муниципальное бюджетное общеобразовательное учреждение<br> средняя общеобразовательная школа № 1 <br>  238210, г. Гвардейск, ул. Калининградская, 18-А<br>  Тел./факс: (8 4012) 32 34 20</p>
+      <p><a href="#">К началу страницы</a></p>
+    </footer>
+    <script src="{{url_for('static', filename = 'js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/bootstrap.js') }}"></script>
+    <script src="{{ url_for('static', filename = 'js/clean-blog.js') }}"></script>
+  </body>
+</html>

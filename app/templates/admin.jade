@@ -1,0 +1,70 @@
+doctype html
+html()
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    title Школа
+    link(href="{{url_for('static', filename = 'css/bootstrap.css') }}", rel='stylesheet')
+    link(href="{{ url_for('static', filename = 'css/style.css') }}", rel='stylesheet')
+    link(href="{{ url_for('static', filename = 'css/blog.css') }}", rel='stylesheet')
+    link(href='http://fonts.googleapis.com/css?family=Didact+Gothic&subset=cyrillic-ext,latin,cyrillic', rel='stylesheet', type='text/css')
+  body
+    .container
+        .row
+            p Категории:
+                ul {% for i in category %}
+                    li 
+                        a(href="/admin/{{ i.id }}") {{ i.name }}
+                    {% endfor %}
+
+            p  Элктронный журнал
+                ul
+                    li 
+                        p Добавить родителей | 
+                            form(action="{{ url_for('adminNewParent') }}", method="POST")
+                                p Name:
+                                    input(type="text", name="parent", placeholder="")
+                                p Children_id:
+                                    input(type="text", name="children_id", placeholder="")
+                                    input.btn-default.btn(type="submit", value="Добавить Родителей")
+                                    a.btn-default.btn(href="#") Отмена
+                    li 
+                        p Добавить учеников | 
+                            form(action="{{ url_for('adminNewChildren') }}", method="POST")
+                                p Name:
+                                    input(type="text", name="children", placeholder="")
+                                p Class_id (int) : 
+                                    input(type="text", name="class_id", placeholder="")
+                                    input.btn-default.btn(type="submit", value="Добавить учеников")
+                                    a.btn-default.btn(href="#") Отмена
+                    li 
+                        p Добавить предмет | 
+                            form(action="{{ url_for('adminNewSubject') }}", method="POST")
+                                p Name:
+                                    input(type="text", name="subject", placeholder="")
+                                    input.btn-default.btn(type="submit", value="Добавить")
+                                    a.btn-default.btn(href="#") Отмена
+                    li 
+                        p Добавить класс | 
+                            form(action="{{ url_for('adminNewClass') }}", method="POST")
+                                p Name:
+                                    input(type="text", name="class", placeholder="")
+                                    input.btn-default.btn(type="submit", value="Добавить")
+                                    a.btn-default.btn(href="#") Отмена
+                    li 
+                        p Добавить оценку | 
+                            form(action="{{ url_for('adminNewMark') }}", method="POST")
+                                p Mark (int) :
+                                    input(type="text", name="mark", placeholder="")
+                                p Class_id (int) : 
+                                    input(type="text", name="class_id", placeholder="")
+                                p Subject_id (int) :
+                                    input(type="text", name="subject_id", placeholder="")
+                                p Children_id (int) : 
+                                    input(type="text", name="children_id", placeholder="")
+                                    input.btn-default.btn(type="submit", value="Добавить")
+                                    a.btn-default.btn(href="#") Отмена
+
+
+

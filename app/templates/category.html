@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  <div class="text-center"> 
+    <h1>{{ category.name }}</h1>
+    <p>{{ category.description }}</p>
+  </div>
+  <div class="row">
+    {% if category.id == 1 %}
+    {%if error %}
+    <p>{{ error }}</p>{% endif %}
+    <form action="{{ url_for('login') }}" method="POST">
+      <p>Введите Имя:
+        <input type="text" placeholder="Username" name="username" value="{{ request.form.username }}"/>
+      </p>
+      <p>Введите пароль:
+        <input type="text" placeholder="Password" name="password" value="{{ request.form.password }}"/>
+      </p>
+      <input type="submit" value="Send"/>
+    </form>{% else %}
+    {% if category.id == 6 %}
+    <p>{{ children }}</p>{% endif %}
+    {% for i in articles%}
+    <div class="col-md-6 service">
+      <h2>{{ i.name }}</h2>
+      <p>{{ i.text|truncate(255) }}</p>
+      <p><a href="/category/{{ category.id }}/{{ i.id }}" role="button" class="btn btn-default">Подробнее »</a></p>
+    </div>{% endfor %}
+    {% endif %}
+  </div>
+</div>{% endblock content %}
